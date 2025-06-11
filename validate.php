@@ -26,9 +26,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 if ($nameErr !== "" || $emailErr !== "" || $numberErr!=="") {
     echo json_encode([
         "error" => [
-            "nameErr" => $nameErr,
-            "emailErr" => $emailErr,
-            "numberErr" => $numberErr
+            "nameErr" => "Usuario: ".$nameErr,
+            "emailErr" => "Correo: ".$emailErr,
+            "numberErr" => "Telefono: ".$numberErr
         ]
     ]);
     exit;

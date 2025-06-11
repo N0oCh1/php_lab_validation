@@ -21,7 +21,16 @@ form.addEventListener('submit', async function(event) {
     body: formData
     })
     .then(res=>res.json())
-    .then(data => response.innerText = data.message)
+    .then(data => {
+      console.log(data)
+      if(data.error){
+        response.innerHTML=
+        data.error.nameErr +"<br>"+ data.error.emailErr +"<br>"+ data.error.numberErr
+      }
+      else{
+        response.innerText = data.message
+      }
+    })
     .catch(error => {
       console.error('Error:', error);
     });
