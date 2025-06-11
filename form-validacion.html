@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+ 
+  <title>Formulario de validacion</title>
+</head>
+<body>
+  <main>
+    <div class="borderGradient">
+      <form id="contactForm" action="validate.php">
+        <div id="usuario">
+          <label>Ingrese su Usuario:</label>
+          <input name="userName" placeholder="Nombre de usuario" type="text" pattern="\w*" required/>
+        </div>
+        <div id="correo">
+          <label>Ingrese su correo: </label>
+          <input name="email" placeholder="ejemplo@ejemplo.com" type="email" required/> 
+        </div>
+        <div id="cel">
+          <label>Numero telefonico:</label>
+          <input name="cel" placeholder="111-111-1111" type="text" pattern="\d{3}-\d{3}-\d{4}" required/>
+        </div>
+
+        <section class="g-recaptcha" data-sitekey="6LdRJVwrAAAAAPhJcp0Zqi9gtf6wsgINv0JU4nKY" id="captcha"></section>
+        <input type="submit" value="Enviar"/>
+        <div id="response">
+
+        </div>
+      </form>
+
+      
+    </div>
+  </main>
+</body>
+<script src="./form-handler.js" ></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+  *{
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  label{
+    font-weight: bold;
+    font-size: 16;
+    background-color: rgba(255, 255, 255, 0.781);
+    padding: 4px 8px;
+  }
+  body{
+    background-color: rgb(9, 0, 59);
+  }
+  main{
+    display: flex;
+    height:100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .borderGradient{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 16px;
+    padding:12px;
+    background-image: linear-gradient( 45deg,rgb(0, 153, 255), #ae00ff);
+  }
+  #contactForm{
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.459);
+    border-radius: 16px;
+    padding: 2rem;
+    align-items: center;
+  }
+  #contactForm div{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-block: 12px;
+    border-radius: 16px;
+  }
+  input[type="text"], input[type="email"]{
+    padding: 8px 16px;
+    font-size: 16px;
+    border: none;
+  }
+  input[type="submit"]{
+    margin-top: 16px;
+    padding: 4px 16px;
+    border: solid 1px  transparent;
+    border-radius: 12px;
+    background-color: rgb(1, 102, 255);
+    color: white;
+    cursor: pointer;
+  }
+  input[type="submit"]:hover{
+    border: solid 1px  rgb(1, 102, 255);
+    background-color: white;
+    color: rgb(1, 102, 255);
+  }
+</style>
+</html>

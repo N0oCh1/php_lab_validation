@@ -1,28 +1,45 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // Sanitize and validate name
-    $name = test_input($_POST["name"]);
-    $nameErr = "";
-    if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
-        $nameErr = "Only letters and white space allowed";
-    }
-    
-    // Sanitize and validate email
+    $name = test_input($_POST['userName']);
     $email = test_input($_POST["email"]);
+    $number = test_input($_POST["cel"]);
+    
+    
+    $nameErr = "";
     $emailErr = "";
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $emailErr = "Invalid email format";
+    $numberErr="";
+
+    
+    if (!preg_match("/^[a-zA-Z]*$/",$name)) {
+        $nameErr = "Solo letras sin digitos";
     }
     
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $emailErr = "El formato esta incorrecto";
+    }
+
+    if (!preg_match("/\d{3}\-\d{3}\-\d{4}/", $number)) {
+        $numberErr = "formato incorrecto del telefono";
+    }
     // ... Additional validation checks ...
 
-    if ($nameErr != "" || $emailErr != "") {
-    echo "<b>Error:</b>";
-    echo "<br>" . $nameErr;
-    echo "<br>" . $emailErr;
-     } else {
+if ($nameErr !== "" || $emailErr !== "" || $numberErr!=="") {
+    echo json_encode([
+        "error" => [
+            "nameErr" => $nameErr,
+            "emailErr" => $emailErr,
+            "numberErr" => $numberErr
+        ]
+    ]);
+    exit;
+     } 
+     else 
+     {
     // Proc ess the form data
-    echo "Form submitted successfully";
+    echo json_encode([
+        "message" => "Formulario enviado"
+    ]);
+    exit;
     }
 }
 
